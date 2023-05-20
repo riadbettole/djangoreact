@@ -1,91 +1,85 @@
+
+import { animateScrollers } from "./utilities/animations";
+
+import { useEffect, useState } from "react";
+
 import {
   ChakraProvider,
-  Heading,
-  Container,
-  // Text,
-  Input,
-  Button,
-  Wrap,
-  Stack, 
-  Image,
-  // Link,
-  Spacer,
-  Flex,
-  SkeletonCircle,
-  SkeletonText,
-  Box,
-  VisuallyHidden,
+  VStack,
 } from "@chakra-ui/react";
-import axios from "axios";
 
-import { useState } from "react";
-
-
-import MyUploader from "./uploader";
+import { showFirstPopup } from "./utilities/popups";
+import {Upload} from "./components/upload";
+import {Clothes} from "./components/clothes";
+import {About} from "./components/about";
+import { Icons } from "./components/icons";
 
 const App = () => {
-  const [image, updateImage] = useState();
-  const [prompt, updatePrompt] = useState('');
-  const [loading, updateLoading] = useState(false);
   const [userImage, updateUserImage] = useState();
 
   const updateUserImageState = (newImage) => {
     updateUserImage(newImage);
   };
 
-  const generate = async (prompt) => {
-    updateLoading(true);
-    const result = await axios.post(`http://127.0.0.1:8000/api/`,{ promptWeb: prompt, imageOfUser: userImage });
-    updateImage(result.data.processed_image);
-    updateLoading(false);
-  };
+  
+  useEffect(() => {
+    showFirstPopup();
+    animateScrollers();
+  }, []);
+
+
 
   return (
-    <>
-      <Container>
-        <Heading>
-            PROTO TYPE🚀
-          </Heading>
+    <ChakraProvider>
 
-        <MyUploader updateUserImageState={updateUserImageState} >
-          </MyUploader>
-
-        <VisuallyHidden>
-            <Wrap marginBottom={"10px"}>
-              <Input
-                value={prompt}
-                onChange={(e) => updatePrompt(e.target.value)}
-                width={"350px"}
-              ></Input>
-              <Button onClick={(e) => generate(prompt)} colorScheme={"yellow"}>
-                Generate
-              </Button>
-            </Wrap>
-          </VisuallyHidden>
-
-        <Flex gap='2'>
-          <Box onClick={(e) =>generate("(((cat)))")}>
-            <Image boxSize='300px' borderRadius='20px' src="https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187.jpg?w=374&h=250"></Image>
-          </Box>
-            <Spacer />
-            <Box onClick={(e) =>generate("(((dog))) ")}>
-            <Image boxSize='300px' borderRadius='20px' src="https://ichef.bbci.co.uk/news/976/cpsprodpb/17638/production/_124800859_gettyimages-817514614.jpg.webp"></Image>
-            </Box>
-          </Flex>
+      <div className="ryad">
+        <VStack>
           
-          {loading ? (
-            <Stack>
-              <SkeletonCircle />
-              <SkeletonText />
-            </Stack>
-          ) : image ? (
-            <>
-            <Image src={`data:image/png;base64,${image}`} boxShadow="lg" />
-            </>
-          ) : null}
-      </Container>
-    </>
+          <Icons/>
+
+          <Upload updateUserImageState={updateUserImageState} />
+
+          <Clothes userImageProp={userImage} />  
+
+          <About />
+        </VStack>
+      </div>
+      
+    </ChakraProvider>
   );
 };
 
 export default App;
+
+
+
+// #EXTRAAAAAAA
+// <VisuallyHidden>
+//               <Wrap marginBottom={"10px"}>
+//                 <Input
+//                   value={prompt}
+//                   onChange={(e) => updatePromptState(e.target.value)}
+//                   width={"350px"}
+//                 ></Input>
+//                 <Button
+//                   onClick={(e) => generate(prompt)}
+//                   colorScheme={"yellow"}
+//                 >
+//                   Generate
+//                 </Button>
+//               </Wrap>
+//             </VisuallyHidden>
+
+
+//<>
+//            {loading ? (
+ //             <Stack>
+  //              <SkeletonCircle />
+   //             <SkeletonText />
+    //          </Stack>
+     //       ) : image ? (
+      //        <>
+       //         {/* <Image src={`data:image/png;base64,${image}`} boxShadow="lg" /> */}
+        //      </>
+         //   ) : <Clothes {...props} />}
+          //</>
