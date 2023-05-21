@@ -21,7 +21,7 @@ export const showFirstPopup = () => {
       if (result.isConfirmed) {
         var element = document.querySelector('#clothes');
         if (element) {
-          var container = document.querySelector('.ryad');
+          var container = document.querySelector('.contenaire3page');
           container.scrollTop = element.offsetTop;
         }
         showSecondPopup();
@@ -47,7 +47,7 @@ export const showSecondPopup = (prompt,userImage,updateLoadingState,updateImageS
       if (result.isConfirmed) {
         var element = document.querySelector('#about');
         if (element) {
-          var container = document.querySelector('.ryad');
+          var container = document.querySelector('.contenaire3page');
           container.scrollTop = element.offsetTop;
         }
         showThirdPopup();
@@ -72,7 +72,7 @@ export const showThirdPopup = () => {
     if (result.isConfirmed) {
       var element = document.querySelector('#upload');
       if (element) {
-        var container = document.querySelector('.ryad');
+        var container = document.querySelector('.contenaire3page');
         container.scrollTop = element.offsetTop;
       }
       showForthPopup();

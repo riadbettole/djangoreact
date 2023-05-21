@@ -32,7 +32,7 @@ const App = () => {
   return (
     <ChakraProvider>
 
-      <div className="ryad">
+      <div className="contenaire3page">
         <VStack>
           
           <Icons/>
@@ -40,6 +40,7 @@ const App = () => {
           <Upload updateUserImageState={updateUserImageState} />
 
           <Clothes userImageProp={userImage} />  
+          {/* <Clothes userImageProp={userImage} />   */}
 
           <About />
         </VStack>

@@ -17,7 +17,7 @@ body{
     border: 3px  #dfdfdf;
 }
 
-.ryad{
+.contenaire3page{
     max-height: 100vh;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
@@ -28,40 +28,18 @@ body{
     display: none;
 }
 
-.woof{
+.page{
     scroll-snap-align: start;
     min-height: 100vh;
 }
-
-#scrl1{
+.scrl{
     position: fixed;
-            top: 40vh;
-            left: 20px;
-            width: 50px;
-            height: 50px;
-}
-#scrl2{
-    position: fixed;
-            top: 45vh;
-            left: 20px;
-            width: 50px;
-            height: 50px;
-}
-#scrl3{
-    position: fixed;
-            top: 50vh;
-            left: 20px;
-            width: 50px;
-            height: 50px;
+    top: 40vh;
+    left: 20px;
+    width: 50px;
+    height: 50px;
 }
 
-#custom-target-1{
-    position: relative;
-    width: 60vh;
-    height: 300px;
-    border-style: solid;
-
-}
 
 .position-absolute {
     position: absolute !important;
@@ -76,3 +54,6 @@ body{
     /* Additional styling properties */
   }
   
+  #scrl1, #scrl2, #scrl3{
+    
+  }

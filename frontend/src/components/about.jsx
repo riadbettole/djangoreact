@@ -9,8 +9,8 @@ import {
 
 export const About = () => {
   return (
-    <div className="woof" id="about">
-      <Center style={{ paddingTop: "20vh" }}>
+    <div className="page pt-[28vh]" id="about">
+      <Center>
         <VStack>
           <Heading>PROTO TYPE🚀</Heading>
           <Flex gap="2">
@@ -18,14 +18,14 @@ export const About = () => {
               <Image
                 boxSize="300px"
                 borderRadius="20px"
-                src="https://ichef.bbci.co.uk/news/976/cpsprodpb/17638/production/_124800859_gettyimages-817514614.jpg.webp"
+                src="https://media.licdn.com/dms/image/D4E03AQEbIp9p_9MaZQ/profile-displayphoto-shrink_800_800/0/1679957989079?e=1690416000&v=beta&t=rsfyeGi6YDysQCOI975Ik6iiV6Rrzg7uSVcvlfNUlag"
               ></Image>
             </Box>
             <Box >
               <Image
                 boxSize="300px"
                 borderRadius="20px"
-                src="https://ichef.bbci.co.uk/news/976/cpsprodpb/17638/production/_124800859_gettyimages-817514614.jpg.webp"
+                src="https://media.licdn.com/dms/image/D4E35AQFqPWxYrRx9jg/profile-framedphoto-shrink_800_800/0/1682592424424?e=1685253600&v=beta&t=LPGd8uoLVWcvF_ydb3vUt2e-8qk0PWayst7dUnBGMo4"
               ></Image>
             </Box>
           </Flex>
