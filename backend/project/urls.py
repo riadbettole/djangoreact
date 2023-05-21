@@ -23,5 +23,11 @@ from app.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', ReactView.as_view(), name = "anything"),
-    path('api/', StableDiffusion.as_view() , name="stable")
+    path('api/', StableDiffusion.as_view() , name="stable"),
+    path('api/clothes/', ClothesAPIView.as_view(), name='clothes-api'),
 ]
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT )
