@@ -4,9 +4,8 @@ import {
   animateTextInSweetAlert22,
   animateTextInSweetAlert23,
 } from "./animations";
-import { generate } from "../utilities/functions";
-// import withReactContent from 'sweetalert2-react-content'
-import gsap from 'gsap';
+
+import gsap from "gsap";
 
 export const showFirstPopup = (
   userName,
@@ -26,7 +25,6 @@ export const showFirstPopup = (
     confirmButtonText: "LET'S GO",
 
     didOpen: () => {
-      // Call the animation function immediately after the dialog is opened
       animateTextInSweetAlert2();
     },
   }).then((result) => {
@@ -47,7 +45,7 @@ const showFirstPopup2 = (
     showCancelButton: false,
     input: "text",
     inputAttributes: {
-      style: "font-size: 50px;", // Set the font-size as desired
+      style: "font-size: 50px;",
     },
     allowOutsideClick: false,
     allowEscapeKey: false,
@@ -56,7 +54,6 @@ const showFirstPopup2 = (
     confirmButtonColor: "#000",
     confirmButtonText: "NEEEEXT",
     didOpen: () => {
-      // Call the animation function immediately after the dialog is opened
       animateTextInSweetAlert22();
     },
   }).then((result) => {
@@ -83,7 +80,6 @@ const showFirstPopup3 = (userName, updateUserGenderState) => {
     cancelButtonText: "GIRL",
 
     didOpen: () => {
-      // Call the animation function immediately after the dialog is opened
       animateTextInSweetAlert23(userName);
     },
   }).then((result) => {
@@ -105,7 +101,6 @@ const showFirstPopup4 = (userName, updateUserGenderState) => {
     customClass: {
       popup: "upload-absolute",
     },
-    // position: 'bottom-right',
     showCancelButton: true,
     confirmButtonText: "Next",
     cancelButtonText: "Cancel",
@@ -113,15 +108,12 @@ const showFirstPopup4 = (userName, updateUserGenderState) => {
     allowEscapeKey: false,
 
     didOpen: () => {
-      const element = document
-        .querySelector(".upload-absolute")
-       
+      const element = document.querySelector(".upload-absolute");
 
-      // Use GSAP's TextPlugin to animate the text
       gsap.fromTo(
         element,
-        { x: 0, y: 0 }, // Initial state
-        { x: -350, y: 250,scale: 1.5, duration: 2 } // Final state
+        { x: 0, y: 0 },
+        { x: -350, y: 250, scale: 1.5, duration: 2 }
       );
     },
   }).then((result) => {
@@ -154,18 +146,15 @@ export const showSecondPopup = (
     cancelButtonText: "Cancel",
     allowOutsideClick: false,
     allowEscapeKey: false,
-    didOpen:()=>{
-      const element = document
-        .querySelector(".clothes_popup")
-       
+    didOpen: () => {
+      const element = document.querySelector(".clothes_popup");
 
-      // Use GSAP's TextPlugin to animate the text
       gsap.fromTo(
         element,
-        { x: 0, y: 0 }, // Initial state
-        { x: 520, y: -250,scale: 1.5, duration: 2 } // Final state
+        { x: 0, y: 0 },
+        { x: 520, y: -250, scale: 1.5, duration: 2 }
       );
-    }
+    },
   }).then((result) => {
     if (result.isConfirmed) {
       var element = document.querySelector("#about");
@@ -209,41 +198,5 @@ export const showForthPopup = () => {
     confirmButtonText: "Close",
     allowOutsideClick: false,
     allowEscapeKey: false,
-  });
-};
-
-export const showImagePopup = (prompt, userImageProp) => {
-  Swal.fire({
-    title: "Popup with Loading Animation",
-    html: '<div id="loading-animation">Loading...</div>',
-    showCancelButton: true,
-    confirmButtonText: "OK",
-    cancelButtonText: "Cancel",
-    didOpen: () => {
-      Swal.showLoading(); // Show the default loading spinner
-      generate(prompt, userImageProp)
-        .then((imageData) => {
-          const img = new Image();
-          img.src = "data:image/png;base64," + imageData.data.processed_image;
-          img.onload = () => {
-            Swal.getHtmlContainer()
-              .querySelector("#loading-animation")
-              .replaceWith(img); // Replace loading animation with the image
-            Swal.hideLoading(); // Hide the loading spinner
-          };
-          img.onerror = () => {
-            Swal.getHtmlContainer().querySelector(
-              "#loading-animation"
-            ).textContent = "Failed to load image"; // Display error message if image loading fails
-            Swal.hideLoading(); // Hide the loading spinner
-          };
-        })
-        .catch((error) => {
-          Swal.getHtmlContainer().querySelector(
-            "#loading-animation"
-          ).textContent = "Failed to load image"; // Display error message if image loading fails
-          Swal.hideLoading(); // Hide the loading spinner
-        });
-    },
   });
 };

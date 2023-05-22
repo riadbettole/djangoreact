@@ -41,20 +41,18 @@ const MyUploader = ({ updateUserImageState }) => {
     uppy.on("complete", async (result) => {
       if (result.successful.length > 0) {
         const uploadedFiles = result.successful;
-        const file = uploadedFiles[0].data; // Access the uploaded file object
+        const file = uploadedFiles[0].data;
 
-        // Read the file and convert it to a Base64 string
         const base64Image = await readFileAsBase64(file);
         console.log(base64Image);
-        const element = document.getElementById('clothes');
-        element.scrollIntoView({behavior: 'smooth'});
-        const element2 = document.getElementById('scrl6');
+        const element = document.getElementById("clothes");
+        element.scrollIntoView({ behavior: "smooth" });
+        const element2 = document.getElementById("scrl6");
         gsap.to(element2, {
-          scale:1.2,
-          duration:4,
+          scale: 1.2,
+          duration: 4,
           color: "green",
-          }
-        )
+        });
         updateUserImageState(base64Image);
       } else {
         console.warn("Upload failed");

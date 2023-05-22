@@ -2,27 +2,22 @@ import { animateScrollers } from "./utilities/animations";
 
 import { useEffect, useState } from "react";
 
-import {
-  ChakraProvider,
-  VStack,
-} from "@chakra-ui/react";
+import { ChakraProvider, VStack } from "@chakra-ui/react";
 
 import { showFirstPopup } from "./utilities/popups";
-import {Upload} from "./components/upload";
-import {Clothes} from "./components/clothes";
-import {About} from "./components/about";
+import { Upload } from "./components/upload";
+import { Clothes } from "./components/clothes";
+import { About } from "./components/about";
 import { Icons } from "./components/icons";
 import { Result } from "./components/result";
-
 
 import { gsap } from "gsap";
 
 const App = () => {
   const [userImage, updateUserImage] = useState();
-  const [userName,  userNameImage] = useState("");
-  const [userGender,userGenderImage] = useState("");
+  const [userName, userNameImage] = useState("");
+  const [userGender, userGenderImage] = useState("");
   const [prompt, updatePrompt] = useState("");
-
 
   const updateUserImageState = (newImage) => {
     updateUserImage(newImage);
@@ -37,53 +32,43 @@ const App = () => {
     updatePrompt(newPrompt);
   };
 
-  
   useEffect(() => {
-    showFirstPopup(userName, userNameImage, updateUserGenderState);
+    showFirstPopup(userName, updateUserNameState, updateUserGenderState);
     animateScrollers();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  useEffect(()=>{
+  useEffect(() => {
     const textElement = document.querySelector("#username");
-  
-    // Use GSAP's TextPlugin to animate the text
+
     gsap.to(textElement, {
       duration: 1,
-      text: 'Hey '+userName,
-      ease: 'power2.out',
+      text: "Hey " + userName,
+      ease: "power2.out",
       fontSize: 20,
     });
-  },[userName])
-
-  const props = {
-    updateUserImageProp : updateUserImageState,
-    updateUserNameProp : updateUserNameState,
-    updateUserGenderProp : updateUserGenderState,
-    updatePromptProp : updatePromptState,
-  }
+  }, [userName]);
 
   return (
     <ChakraProvider>
-
       <div className="contenaire3page">
         <VStack>
-          
-          <Icons userName={userName}/>
+          <Icons userName={userName} />
 
-          <Upload  updateUserImageState={updateUserImageState}/>
+          <Upload updateUserImageState={updateUserImageState} />
 
-          <Clothes updatePromptState={updatePromptState} />  
-          
-          <Result prompt = {prompt} userImage = {userImage}/>
+          <Clothes updatePromptState={updatePromptState} />
 
-          <About/>
+          <Result
+            prompt={prompt}
+            userImage={userImage}
+            userGender={userGender}
+          />
+
+          <About />
         </VStack>
       </div>
-      
     </ChakraProvider>
   );
 };
 
 export default App;
-
-

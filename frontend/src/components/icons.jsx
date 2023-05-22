@@ -1,4 +1,4 @@
-import { Text, VStack, Icon, Circle, Center } from "@chakra-ui/react";
+import { Text, VStack, Icon, Center } from "@chakra-ui/react";
 import { gsap } from "gsap";
 import { useRef } from "react";
 
@@ -142,9 +142,7 @@ export const Icons = ({ userName }) => {
             boxSize={10}
             color="red.800"
             id="scrl4"
-            // ref={elementRef2}
-            // onMouseEnter={handleHover3}
-            // onMouseLeave={handleHover4}
+
           >
             <path
               fill="currentColor"
@@ -156,9 +154,6 @@ export const Icons = ({ userName }) => {
             boxSize={10}
             color="red.800"
             id="scrl5"
-            // ref={elementRef2}
-            // onMouseEnter={handleHover3}
-            // onMouseLeave={handleHover4}
           >
             <path
               fill="currentColor"
@@ -170,9 +165,6 @@ export const Icons = ({ userName }) => {
             boxSize={10}
             color="red.800"
             id="scrl6"
-            // ref={elementRef2}
-            // onMouseEnter={handleHover3}
-            // onMouseLeave={handleHover4}
           >
             <path
               fill="currentColor"

@@ -22,7 +22,6 @@ from app.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', ReactView.as_view(), name = "anything"),
     path('api/', StableDiffusion.as_view() , name="stable"),
     path('api/clothes/', ClothesAPIView.as_view(), name='clothes-api'),
 ]

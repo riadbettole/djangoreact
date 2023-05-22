@@ -1,11 +1,4 @@
-import {
-  Heading,
-  Center,
-  Box,
-  VStack,
-  Image,
-  Flex,
-} from "@chakra-ui/react";
+import { Heading, Center, Box, VStack, Image, Flex } from "@chakra-ui/react";
 
 export const About = () => {
   return (
@@ -14,18 +7,18 @@ export const About = () => {
         <VStack>
           <Heading>PROTO TYPE🚀</Heading>
           <Flex gap="2">
-            <Box >
+            <Box>
               <Image
                 boxSize="300px"
                 borderRadius="20px"
-                src="https://media.licdn.com/dms/image/D4E03AQEbIp9p_9MaZQ/profile-displayphoto-shrink_800_800/0/1679957989079?e=1690416000&v=beta&t=rsfyeGi6YDysQCOI975Ik6iiV6Rrzg7uSVcvlfNUlag"
+                src="http://localhost:8000/static/ryad.jpg"
               ></Image>
             </Box>
-            <Box >
+            <Box>
               <Image
                 boxSize="300px"
                 borderRadius="20px"
-                src="https://media.licdn.com/dms/image/D4E35AQFqPWxYrRx9jg/profile-framedphoto-shrink_800_800/0/1682592424424?e=1685253600&v=beta&t=LPGd8uoLVWcvF_ydb3vUt2e-8qk0PWayst7dUnBGMo4"
+                src="http://localhost:8000/static/ayman.png"
               ></Image>
             </Box>
           </Flex>
