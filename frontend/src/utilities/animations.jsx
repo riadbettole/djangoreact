@@ -58,6 +58,7 @@ export const animateScrollers = () => {
     let element1 = document.querySelector("#scrl1");
     let element2 = document.querySelector("#scrl2");
     let element3 = document.querySelector("#scrl3");
+    let element4 = document.querySelector("#scrl7");
     gsap.to(element1, {
       rotation: 360,
       scale:1.5,
@@ -111,6 +112,25 @@ export const animateScrollers = () => {
         onLeave: () => {
           element3.style.color = "gray";
           gsap.to(element3,{
+            scale:1.0,
+          })
+        }
+      }
+    })
+    gsap.to("#scrl7", {
+      rotation: 360,
+      color: "red",
+      scale:1.5,
+      duration:4,
+      scrollTrigger: {
+        trigger: "#result",
+        start: "top center", // When the top of .snap-point hits the center of the viewport
+        end: "bottom center", // When the bottom of .snap-point hits the center of the viewport
+        markers: false,
+        scrub: true,
+        onLeave: () => {
+          element4.style.color = "gray";
+          gsap.to(element4,{
             scale:1.0,
           })
         }

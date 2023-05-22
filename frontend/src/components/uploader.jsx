@@ -9,6 +9,8 @@ import "@uppy/core/dist/style.css";
 import "@uppy/dashboard/dist/style.css";
 import "@uppy/image-editor/dist/style.css";
 
+import { gsap } from "gsap";
+
 const readFileAsBase64 = (file) => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -46,6 +48,13 @@ const MyUploader = ({ updateUserImageState }) => {
         console.log(base64Image);
         const element = document.getElementById('clothes');
         element.scrollIntoView({behavior: 'smooth'});
+        const element2 = document.getElementById('scrl6');
+        gsap.to(element2, {
+          scale:1.2,
+          duration:4,
+          color: "green",
+          }
+        )
         updateUserImageState(base64Image);
       } else {
         console.warn("Upload failed");

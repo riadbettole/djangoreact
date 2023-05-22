@@ -6,6 +6,7 @@ export const Icons = ({ userName }) => {
   const elementRef = useRef(null);
   const elementRef2 = useRef(null);
   const elementRef3 = useRef(null);
+  const elementRef4 = useRef(null);
 
   const handleHover = () => {
     gsap.to(elementRef.current, {
@@ -39,6 +40,18 @@ export const Icons = ({ userName }) => {
   };
   const handleHover6 = () => {
     gsap.to(elementRef3.current, {
+      scale: 1.0,
+      duration: 0.3,
+    });
+  };
+  const handleHover7 = () => {
+    gsap.to(elementRef4.current, {
+      scale: 1.2,
+      duration: 0.3,
+    });
+  };
+  const handleHover8 = () => {
+    gsap.to(elementRef4.current, {
       scale: 1.0,
       duration: 0.3,
     });
@@ -81,6 +94,27 @@ export const Icons = ({ userName }) => {
               />
             </Icon>
           </a>
+
+          <a href="#result">
+            <Icon
+              viewBox="0 0 32 32"
+              boxSize={10}
+              color="gray"
+              id="scrl7"
+              ref={elementRef4}
+              onMouseEnter={handleHover7}
+              onMouseLeave={handleHover8}
+            >
+              <path
+                fill="currentColor"
+                d="M29.996 4c0.001 0.001 0.003 0.002 0.004 0.004v23.993c-0.001 0.001-0.002 0.003-0.004 0.004h-27.993c-0.001-0.001-0.003-0.002-0.004-0.004v-23.993c0.001-0.001 0.002-0.003 0.004-0.004h27.993zM30 2h-28c-1.1 0-2 0.9-2 2v24c0 1.1 0.9 2 2 2h28c1.1 0 2-0.9 2-2v-24c0-1.1-0.9-2-2-2v0z"
+              />
+              <path fill="currentColor" d="M26 9c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3z"></path>
+              <path fill="currentColor" d="M28 26h-24v-4l7-12 8 10h2l7-6z"></path>
+            </Icon>
+            
+          </a>
+
           <a href="#about">
             <Icon
               viewBox="0 0 24 24"
@@ -96,7 +130,10 @@ export const Icons = ({ userName }) => {
                 d="M23 12c0-3.037-1.232-5.789-3.222-7.778s-4.741-3.222-7.778-3.222-5.789 1.232-7.778 3.222-3.222 4.741-3.222 7.778 1.232 5.789 3.222 7.778 4.741 3.222 7.778 3.222 5.789-1.232 7.778-3.222 3.222-4.741 3.222-7.778zM21 12c0 2.486-1.006 4.734-2.636 6.364s-3.878 2.636-6.364 2.636-4.734-1.006-6.364-2.636-2.636-3.878-2.636-6.364 1.006-4.734 2.636-6.364 3.878-2.636 6.364-2.636 4.734 1.006 6.364 2.636 2.636 3.878 2.636 6.364zM13 16v-4c0-0.552-0.448-1-1-1s-1 0.448-1 1v4c0 0.552 0.448 1 1 1s1-0.448 1-1zM12 9c0.552 0 1-0.448 1-1s-0.448-1-1-1-1 0.448-1 1 0.448 1 1 1z"
               />
             </Icon>
+            
           </a>
+
+          
         </VStack>
         <Center>
         <VStack gap="5" className="scrl2 flex-col">

@@ -74,8 +74,7 @@ const App = () => {
 
           <Clothes updatePromptState={updatePromptState} />  
           
-
-          <Result {...props}/>
+          <Result prompt = {prompt} userImage = {userImage}/>
 
           <About/>
         </VStack>
