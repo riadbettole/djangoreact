@@ -25,7 +25,7 @@ export const showFirstPopup = (
     confirmButtonText: "LET'S GO",
 
     didOpen: () => {
-      animateTextInSweetAlert2();
+      animateTextInSweetAlert2("READY TO TRY NEW CLOTHES?",".upload_popup",100);
     },
   }).then((result) => {
     if (result.isConfirmed) {
@@ -41,7 +41,7 @@ const showFirstPopup2 = (
 ) => {
   Swal.fire({
     text: ".",
-    customClass: "upload_popup",
+    customClass: "upload_popup2",
     showCancelButton: false,
     input: "text",
     inputAttributes: {
@@ -54,7 +54,7 @@ const showFirstPopup2 = (
     confirmButtonColor: "#000",
     confirmButtonText: "NEEEEXT",
     didOpen: () => {
-      animateTextInSweetAlert22();
+      animateTextInSweetAlert2("GIVE US YOUR NAME WILL YA",".upload_popup2",60);
     },
   }).then((result) => {
     if (result.isConfirmed) {
@@ -77,10 +77,11 @@ const showFirstPopup3 = (userName, updateUserGenderState) => {
     confirmButtonColor: "BLUE",
     cancelButtonColor: "PINK",
     confirmButtonText: "BOY",
+    
     cancelButtonText: "GIRL",
 
     didOpen: () => {
-      animateTextInSweetAlert23(userName);
+      animateTextInSweetAlert23(userName,".upload_popup3",100);
     },
   }).then((result) => {
     if (result.isConfirmed) {
@@ -95,8 +96,8 @@ const showFirstPopup3 = (userName, updateUserGenderState) => {
 
 const showFirstPopup4 = (userName, updateUserGenderState) => {
   Swal.fire({
-    title: "Second Popup",
-    text: "This is the second popup.",
+    title: "WELCOME TO VDR 🎉 ",
+    text: ".",
     target: "#upload",
     customClass: {
       popup: "upload-absolute",
@@ -106,10 +107,11 @@ const showFirstPopup4 = (userName, updateUserGenderState) => {
     cancelButtonText: "Cancel",
     allowOutsideClick: false,
     allowEscapeKey: false,
+    
 
     didOpen: () => {
       const element = document.querySelector(".upload-absolute");
-
+      animateTextInSweetAlert2("Here's a small guide, we put our photo here",".upload-absolute");
       gsap.fromTo(
         element,
         { x: 0, y: 0 },
@@ -128,15 +130,10 @@ const showFirstPopup4 = (userName, updateUserGenderState) => {
   });
 };
 
-export const showSecondPopup = (
-  prompt,
-  userImage,
-  updateLoadingState,
-  updateImageState
-) => {
+export const showSecondPopup = () => {
   Swal.fire({
-    title: "Second Popup",
-    text: "This is the second popup.",
+    title: "Many choices..",
+    text: ".",
     target: "#clothes",
     customClass: {
       popup: "clothes_popup",
@@ -148,7 +145,7 @@ export const showSecondPopup = (
     allowEscapeKey: false,
     didOpen: () => {
       const element = document.querySelector(".clothes_popup");
-
+      animateTextInSweetAlert2("Here we select our clothes 👔🥼",".clothes_popup");
       gsap.fromTo(
         element,
         { x: 0, y: 0 },
@@ -157,7 +154,7 @@ export const showSecondPopup = (
     },
   }).then((result) => {
     if (result.isConfirmed) {
-      var element = document.querySelector("#about");
+      var element = document.querySelector("#result");
       if (element) {
         var container = document.querySelector(".contenaire3page");
         container.scrollTop = element.offsetTop;
@@ -168,16 +165,19 @@ export const showSecondPopup = (
 };
 export const showThirdPopup = () => {
   Swal.fire({
-    title: "Second Popup",
-    text: "This is the second popup.",
-    target: "#clothes",
-    customClass: "about_popup",
-    position: "bottom-right",
+    title: "MIX🎛",
+    text: ".",
+    target: "#result",
+    customClass: "result_popup",
+
     showCancelButton: true,
     confirmButtonText: "Next",
     cancelButtonText: "Cancel",
     allowOutsideClick: false,
     allowEscapeKey: false,
+    didOpen:()=>{
+      animateTextInSweetAlert2("Finally we fuse our pic with the clothes 👔🥼",".result_popup");
+    }
   }).then((result) => {
     if (result.isConfirmed) {
       var element = document.querySelector("#upload");
@@ -191,12 +191,16 @@ export const showThirdPopup = () => {
 };
 export const showForthPopup = () => {
   Swal.fire({
-    title: "Third Popup",
-    text: "This is the Third popup.",
+    text: ".",
     customClass: "upload_popup2",
     icon: "info",
     confirmButtonText: "Close",
-    allowOutsideClick: false,
-    allowEscapeKey: false,
+    allowOutsideClick: true,
+    allowEscapeKey: true,
+    width:1000,
+    didOpen:()=>{
+      const text = "SO WELCOME AND HAVE FUN"
+      animateTextInSweetAlert2(text,".upload_popup2",70);
+    }
   });
 };

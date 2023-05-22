@@ -6,7 +6,7 @@ import { gsap } from "gsap";
 
 import axios from "axios";
 
-export const Clothes = ({ updatePromptState }) => {
+export const Clothes = ({ updatePromptState, updateImageClothState }) => {
   const getClothes = async () => {
     const response = await axios.get("http://localhost:8000/api/clothes/");
     return response.data;
@@ -19,7 +19,6 @@ export const Clothes = ({ updatePromptState }) => {
       try {
         const clothesData = await getClothes();
         updateClothesDataState(clothesData);
-        console.log(clothesDataState);
       } catch (error) {
         console.log("Error :", error);
       }
@@ -33,7 +32,6 @@ export const Clothes = ({ updatePromptState }) => {
     x.forEach((element) => {
       element.remove();
     });
-
     const element2 = document.getElementById("scrl5");
     gsap.to(element2, {
       scale: 1.2,
@@ -52,6 +50,8 @@ export const Clothes = ({ updatePromptState }) => {
     });
     const id = "#" + clothesId;
     const e = document.querySelector(id);
+    const link = e.firstChild.src;
+    updateImageClothState(link)
     const annotation = annotate(e, { type: "box", color: "pink" });
     annotation.show();
   };
@@ -83,7 +83,7 @@ export const Clothes = ({ updatePromptState }) => {
                       </Box>
                     );
                   } else {
-                    return <></>;
+                    
                   }
                 })}
               </Flex>
@@ -107,7 +107,7 @@ export const Clothes = ({ updatePromptState }) => {
                       </Box>
                     );
                   } else {
-                    return <></>;
+                   
                   }
                 })}
               </Flex>

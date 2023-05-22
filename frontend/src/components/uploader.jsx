@@ -44,7 +44,6 @@ const MyUploader = ({ updateUserImageState }) => {
         const file = uploadedFiles[0].data;
 
         const base64Image = await readFileAsBase64(file);
-        console.log(base64Image);
         const element = document.getElementById("clothes");
         element.scrollIntoView({ behavior: "smooth" });
         const element2 = document.getElementById("scrl6");

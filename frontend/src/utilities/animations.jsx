@@ -5,37 +5,26 @@ import { TextPlugin } from "gsap/TextPlugin";
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(TextPlugin);
 
-export const animateTextInSweetAlert2 = () => {
+export const animateTextInSweetAlert2 = (text, className, size) => {
   const textElement = document
-    .querySelector(".upload_popup")
+    .querySelector(className)
     .querySelectorAll(".swal2-html-container")[0];
 
   gsap.to(textElement, {
     duration: 1,
-    text: "READY TO TRY NEW CLOTHES?",
+    text: text,
     ease: "power2.out",
-    fontSize: 100,
+    fontSize: size,
   });
 };
-export const animateTextInSweetAlert22 = () => {
-  const textElement = document
-    .querySelector(".upload_popup")
-    .querySelectorAll(".swal2-html-container")[0];
 
-  gsap.to(textElement, {
-    duration: 1,
-    text: "GIVE US YOUR NAME WILL YA",
-    ease: "power2.out",
-    fontSize: 50,
-  });
-};
 export const animateTextInSweetAlert23 = (userName) => {
   const textElement = document
     .querySelector(".upload_popup3")
     .querySelectorAll(".swal2-html-container")[0];
 
   gsap.to(textElement, {
-    duration: 1,
+    duration: 2,
     text: "FINALLY YOUR GENDER, " + userName,
     ease: "power2.out",
     fontSize: 50,

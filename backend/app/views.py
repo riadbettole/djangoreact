@@ -34,15 +34,33 @@ class StableDiffusion(APIView):
         image_data = base64.b64decode(userImage[22:])
         image_buffer = BytesIO(image_data)
         pil_image = Image.open(image_buffer)
+
+                #mask
+
+        # Create a new image with a black background
+        mask = Image.new("RGBA", (800, 800), (0, 0, 0))
+
+        # Fill the top half of the image with black color
+        bottom_half = (0, 400, 800, 800)
+        mask.paste((255, 255, 255, 255), bottom_half)
+        mask.save("mask_image.png")
+       
+        
         
         result2 = api.img2img(images=[pil_image], 
-                    prompt=promptWeb,
-                    cfg_scale=7, 
-                    styles=[""],
-                    denoising_strength=0.65,
-                    negative_prompt="deformed, contorted, amputee,anime, cartoon, celshade, contour-line, 3d render, fake, uncanny, surreal, cg, caricature, depiction",
-                    steps=50,
-                    )
+                prompt=promptWeb, #1
+                cfg_scale=7, #1
+                styles=[""],#1
+                denoising_strength=1, #1
+                negative_prompt="deformed, contorted, amputee,anime, cartoon, celshade, contour-line, 3d render, fake, uncanny, surreal, cg, caricature, depiction, (((nsfw,naked)))", #1
+                steps=32,#1
+                resize_mode=1,
+                inpainting_fill=3,
+                sampler_name="Euler a",
+                mask_blur=4,
+                # inpainting_mask_invert=1,
+                mask_image=mask,
+                )
         
         processed_image_bytes = BytesIO()
         result2.image.save(processed_image_bytes, format='PNG')

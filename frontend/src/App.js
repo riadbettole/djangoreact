@@ -14,11 +14,15 @@ import { Result } from "./components/result";
 import { gsap } from "gsap";
 
 const App = () => {
-  const [userImage, updateUserImage] = useState();
+  const [userImage, updateUserImage] = useState("https://static.vecteezy.com/ti/vecteur-libre/p2/17436430-icone-de-point-d-interrogation-de-contour-illustrationle-de-conception-plate-isolee-vectoriel.jpg");
   const [userName, userNameImage] = useState("");
   const [userGender, userGenderImage] = useState("");
   const [prompt, updatePrompt] = useState("");
+  const [imageCloth, updateimageCloth] = useState("https://static.vecteezy.com/ti/vecteur-libre/p2/17436430-icone-de-point-d-interrogation-de-contour-illustrationle-de-conception-plate-isolee-vectoriel.jpg");
 
+  const updateImageClothState = (newImage) => {
+    updateimageCloth(newImage);
+  };
   const updateUserImageState = (newImage) => {
     updateUserImage(newImage);
   };
@@ -56,12 +60,13 @@ const App = () => {
 
           <Upload updateUserImageState={updateUserImageState} />
 
-          <Clothes updatePromptState={updatePromptState} />
+          <Clothes updatePromptState={updatePromptState} updateImageClothState={updateImageClothState}/>
 
           <Result
             prompt={prompt}
             userImage={userImage}
             userGender={userGender}
+            imageCloth={imageCloth}
           />
 
           <About />

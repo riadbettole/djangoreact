@@ -7,6 +7,7 @@ import {
   Button,
   SkeletonText,
   SkeletonCircle,
+  Heading,
 } from "@chakra-ui/react";
 import { gsap } from "gsap";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
@@ -14,7 +15,7 @@ import { generate } from "../utilities/functions";
 import { useState } from "react";
 gsap.registerPlugin(MotionPathPlugin);
 
-export const Result = ({ prompt, userImage, userGender }) => {
+export const Result = ({ prompt, userImage, userGender, imageCloth }) => {
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState();
   const readyToGenerate = () => {
@@ -83,16 +84,14 @@ export const Result = ({ prompt, userImage, userGender }) => {
       }
     );
     const pr = userGender + " " + prompt;
+    
+    console.log(userImage)
+  console.log(pr)
     generate(pr, userImage, setImage).then((imageData) => {
       setImage("data:image/png;base64," + imageData.data.processed_image);
       setLoading(false);
 
-      const elementX = document.getElementById("resultImage");
-      gsap.to(elementX, {
-        size: 1.5,
-        duration: 2,
-        ease: "power1.inOut",
-      });
+   
       const element7 = document.getElementById("scrl4");
       gsap.to(element7, {
         scale: 1.6,
@@ -100,8 +99,15 @@ export const Result = ({ prompt, userImage, userGender }) => {
         color: "green",
       });
       gsap.fromTo(element7, { x: 0, y: 0 }, { x: 3, y: 0, duration: 1 });
+      const elementX = document.getElementById("resultImage");
+      gsap.to(elementX, {
+        size: 1.5,
+        duration: 2,
+        ease: "power1.inOut",
+      });
     });
   };
+ 
   return (
     <div className="page pt-[14vh]" id="result">
       <Center>
@@ -109,9 +115,10 @@ export const Result = ({ prompt, userImage, userGender }) => {
           <Flex gap="12">
             <Box className="pt-[14vh]" id="left">
               <Image
-                boxSize="300px"
+                boxSize="500px"
                 borderRadius="20px"
-                src="https://media.licdn.com/dms/image/D4E03AQEbIp9p_9MaZQ/profile-displayphoto-shrink_800_800/0/1679957989079?e=1690416000&v=beta&t=rsfyeGi6YDysQCOI975Ik6iiV6Rrzg7uSVcvlfNUlag"
+                objectFit="cover"
+                src={userImage}
               ></Image>
             </Box>
             <Box id="middle" opacity={0}>
@@ -127,21 +134,24 @@ export const Result = ({ prompt, userImage, userGender }) => {
                   />
                 </>
               ) : image ? (
+                <Center gap={20}>
                 <Image
                   boxSize="600px"
                   borderRadius="20px"
                   src={image}
                   id="resultImage"
                 ></Image>
+                <Heading width={250}>TADUM 🎉</Heading>
+                </Center>
               ) : (
-                <Box width={600} height={550}></Box>
+                <Box width={500} height={550}></Box>
               )}
             </Box>
             <Box className="pt-[14vh]" id="right">
               <Image
-                boxSize="300px"
+                boxSize="500px"
                 borderRadius="20px"
-                src="https://media.licdn.com/dms/image/D4E35AQFqPWxYrRx9jg/profile-framedphoto-shrink_800_800/0/1682592424424?e=1685253600&v=beta&t=LPGd8uoLVWcvF_ydb3vUt2e-8qk0PWayst7dUnBGMo4"
+                src={imageCloth}
               ></Image>
             </Box>
           </Flex>
@@ -157,7 +167,7 @@ export const Result = ({ prompt, userImage, userGender }) => {
               readyToGenerate();
             }}
           >
-            READY TO GO🚀
+            TIME TO MIX🚀
           </Button>
         </VStack>
       </Center>
