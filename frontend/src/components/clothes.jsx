@@ -13,31 +13,22 @@ import { useEffect, useRef, useState } from "react";
 import { showImagePopup } from "../utilities/popups";
 import axios from "axios";
 
-export const Clothes = ({ userImageProp, updateImageProp }) => {
+export const Clothes = ({ updatePromptState }) => {
   const getClothes = async () => {
     const response = await axios.get("http://localhost:8000/api/clothes/");
     return response.data;
   };
 
-  const fetchData = async () => {
-    return await getClothes();
-  };
+  const [clothesDataState, updateClothesDataState] = useState([]);
 
-  const [prompt, updatePrompt] = useState("");
-  const updatePromptState = (newPrompt) => {
-    updatePrompt(newPrompt);
-  };
-
-  const clothesDataRef = useRef([])
-
-useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const clothesData = await getClothes();
-        clothesDataRef.current = clothesData;
-        console.log(clothesDataRef.current);
+        updateClothesDataState(clothesData);
+        console.log(clothesDataState);
       } catch (error) {
-        console.log('Error fetching data:', error);
+        console.log("Error :", error);
       }
     };
 
@@ -52,41 +43,46 @@ useEffect(() => {
           <Flex gap="20">
             <VStack>
               <Flex gap="2">
-                {(clothesDataRef.current).map((clothes) => (
-                  <Box
-                    key={clothes.id}
-                    onClick={() => updatePromptState(clothes.prompt)}
-                  >
-                    <Image
-                      boxSize="400px"
-                      borderRadius="20px"
-                      objectFit="cover"
-                      src={"http://localhost:8000"+clothes.image}
-                    />
-                  </Box>
-                ))}
-
+                {clothesDataState.map((clothes) => {
+                  if (clothes.id < 4) {
+                    return (
+                      <Box
+                        key={clothes.id}
+                        onClick={() => updatePromptState(clothes.prompt)}
+                      >
+                        <Image
+                          boxSize="400px"
+                          borderRadius="20px"
+                          objectFit="cover"
+                          src={"http://localhost:8000" + clothes.image}
+                        />
+                      </Box>
+                    );
+                  } 
+                })}
               </Flex>
               <Flex gap="2">
-              {(clothesDataRef.current).map((clothes) => (
-                  <Box
-                    key={clothes.id}
-                    onClick={() => updatePromptState(clothes.prompt)}
-                  >
-                    <Image
-                      boxSize="400px"
-                      borderRadius="20px"
-                      objectFit="cover"
-                      src={"http://localhost:8000"+clothes.image}
-                    />
-                  </Box>
-                ))}
+                {clothesDataState.map((clothes) => {
+                  if (clothes.id > 3) {
+                    return (
+                      <Box
+                        key={clothes.id}
+                        onClick={() => updatePromptState(clothes.prompt)}
+                      >
+                        <Image
+                          boxSize="400px"
+                          borderRadius="20px"
+                          objectFit="cover"
+                          src={"http://localhost:8000" + clothes.image}
+                        />
+                      </Box>
+                    );
+                  } 
+                })}
               </Flex>
             </VStack>
             <Center>
-              <Button onClick={(e) => showImagePopup(prompt, userImageProp)}>
-                SELECT CLOTHING 👗🎩
-              </Button>
+              <Button onClick={(e) => {}}>SELECT CLOTHING 👗🎩</Button>
             </Center>
           </Flex>
         </VStack>

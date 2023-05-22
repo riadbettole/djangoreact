@@ -1,0 +1,31 @@
+
+// #EXTRAAAAAAA
+// <VisuallyHidden>
+//               <Wrap marginBottom={"10px"}>
+//                 <Input
+//                   value={prompt}
+//                   onChange={(e) => updatePromptState(e.target.value)}
+//                   width={"350px"}
+//                 ></Input>
+//                 <Button
+//                   onClick={(e) => generate(prompt)}
+//                   colorScheme={"yellow"}
+//                 >
+//                   Generate
+//                 </Button>
+//               </Wrap>
+//             </VisuallyHidden>
+
+
+//<>
+//            {loading ? (
+ //             <Stack>
+  //              <SkeletonCircle />
+   //             <SkeletonText />
+    //          </Stack>
+     //       ) : image ? (
+      //        <>
+       //         {/* <Image src={`data:image/png;base64,${image}`} boxShadow="lg" /> */}
+        //      </>
+         //   ) : <Clothes {...props} />}
+          //</>

@@ -1,4 +1,3 @@
-
 import { animateScrollers } from "./utilities/animations";
 
 import { useEffect, useState } from "react";
@@ -13,21 +12,55 @@ import {Upload} from "./components/upload";
 import {Clothes} from "./components/clothes";
 import {About} from "./components/about";
 import { Icons } from "./components/icons";
+import { Result } from "./components/result";
+
+
+import { gsap } from "gsap";
 
 const App = () => {
   const [userImage, updateUserImage] = useState();
+  const [userName,  userNameImage] = useState("");
+  const [userGender,userGenderImage] = useState("");
+  const [prompt, updatePrompt] = useState("");
+
 
   const updateUserImageState = (newImage) => {
     updateUserImage(newImage);
   };
+  const updateUserNameState = (newUserName) => {
+    userNameImage(newUserName);
+  };
+  const updateUserGenderState = (newGender) => {
+    userGenderImage(newGender);
+  };
+  const updatePromptState = (newPrompt) => {
+    updatePrompt(newPrompt);
+  };
 
   
   useEffect(() => {
-    showFirstPopup();
+    showFirstPopup(userName, userNameImage, updateUserGenderState);
     animateScrollers();
   }, []);
 
+  useEffect(()=>{
+    const textElement = document.querySelector("#username");
+  
+    // Use GSAP's TextPlugin to animate the text
+    gsap.to(textElement, {
+      duration: 1,
+      text: 'Hey '+userName,
+      ease: 'power2.out',
+      fontSize: 20,
+    });
+  },[userName])
 
+  const props = {
+    updateUserImageProp : updateUserImageState,
+    updateUserNameProp : updateUserNameState,
+    updateUserGenderProp : updateUserGenderState,
+    updatePromptProp : updatePromptState,
+  }
 
   return (
     <ChakraProvider>
@@ -35,14 +68,16 @@ const App = () => {
       <div className="contenaire3page">
         <VStack>
           
-          <Icons/>
+          <Icons userName={userName}/>
 
-          <Upload updateUserImageState={updateUserImageState} />
+          <Upload  updateUserImageState={updateUserImageState}/>
 
-          <Clothes userImageProp={userImage} />  
-          {/* <Clothes userImageProp={userImage} />   */}
+          <Clothes updatePromptState={updatePromptState} />  
+          
 
-          <About />
+          <Result {...props}/>
+
+          <About/>
         </VStack>
       </div>
       
@@ -53,34 +88,3 @@ const App = () => {
 export default App;
 
 
-
-// #EXTRAAAAAAA
-// <VisuallyHidden>
-//               <Wrap marginBottom={"10px"}>
-//                 <Input
-//                   value={prompt}
-//                   onChange={(e) => updatePromptState(e.target.value)}
-//                   width={"350px"}
-//                 ></Input>
-//                 <Button
-//                   onClick={(e) => generate(prompt)}
-//                   colorScheme={"yellow"}
-//                 >
-//                   Generate
-//                 </Button>
-//               </Wrap>
-//             </VisuallyHidden>
-
-
-//<>
-//            {loading ? (
- //             <Stack>
-  //              <SkeletonCircle />
-   //             <SkeletonText />
-    //          </Stack>
-     //       ) : image ? (
-      //        <>
-       //         {/* <Image src={`data:image/png;base64,${image}`} boxShadow="lg" /> */}
-        //      </>
-         //   ) : <Clothes {...props} />}
-          //</>

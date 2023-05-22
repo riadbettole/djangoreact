@@ -11,9 +11,33 @@ export const animateTextInSweetAlert2  =  () => {
   
     // Use GSAP's TextPlugin to animate the text
     gsap.to(textElement, {
-      duration: 4,
-      text: 'BLABLALBALBALBALBALBLABLALBALBALBLAL',
+      duration: 1,
+      text: 'READY TO TRY NEW CLOTHES?',
       ease: 'power2.out',
+      fontSize: 100,
+    });
+  }
+  export const animateTextInSweetAlert22  =  () => {
+    const textElement = document.querySelector(".upload_popup").querySelectorAll(".swal2-html-container")[0];;
+  
+    // Use GSAP's TextPlugin to animate the text
+    gsap.to(textElement, {
+      duration: 1,
+      text: 'GIVE US YOUR NAME WILL YA',
+      ease: 'power2.out',
+      fontSize: 50,
+    });
+  }
+  export const animateTextInSweetAlert23  =  (userName) => {
+
+    const textElement = document.querySelector(".upload_popup3").querySelectorAll(".swal2-html-container")[0];;
+  
+    // Use GSAP's TextPlugin to animate the text
+    gsap.to(textElement, {
+      duration: 1,
+      text: 'FINALLY YOUR GENDER, ' + userName,
+      ease: 'power2.out',
+      fontSize: 50,
     });
   }
 
